@@ -2,8 +2,15 @@ Rails.application.routes.draw do
 
   resources :products
   resources :users, only: [:new, :create]
-  resources :sessions, only: [:new, :create, :destroy]
+  resources(:sessions, {only: [:new, :create, :destroy]})
+                       #key   #symbol
+  # Above line is same as the following:
+  # resources(:sessions, {:only => [:new, :create, :destroy]})
   
+  # symbol itself can be the value to another key in a hash
+  # the whole thing only: ... :destroy is a hash 
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

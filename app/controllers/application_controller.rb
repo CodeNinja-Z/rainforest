@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # private methods can only be invoked inside current Controller
+  # public methods can be invoked within other Controllers
   private
 
   def current_user
@@ -10,12 +12,12 @@ class ApplicationController < ActionController::Base
     # A: ||是 或运算符···如果前面的变量为空··那么就会执行后面的表达式··进行赋值
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     # Q: Session is something that should be at top of a web service
-    # How do we access the session hash at here from 
-    # sessions_controller.rb when we don't include anything?
+    # A: 这里的session不是自定义的,而是从ActionController::Base
+    #    里继承的
   end
 
-  # Why define a private method and use it as helper method
-  # WHy not define a public method?
+  # Purpose of defining helper_method is: To use the method
+  # in other Controllers and View (application.html.erb)
   helper_method :current_user
 end
 

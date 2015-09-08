@@ -17,7 +17,11 @@ class SessionsController < ApplicationController
   def destroy
     # Up to now, this app only allow ONE user to log in at one time
     session[:user_id] = nil
+    # session.reset!
     redirect_to products_url, notice: "Logged out!"
   end
 
 end
+
+# find returns an error if it fails to find the thing
+# find_by returns nil if it fails to find the thing
