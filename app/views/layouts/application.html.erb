@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<!-- Q: How to comment multiple lines in a View? -->
+<!-- <% flash.each do |name, msg| -%> -->
+      <!-- <%= content_tag :div, msg, class: name %> -->
+      <!-- Q: How to look up content_tag in Rails API? 
+    <!-- <% end -%> -->
 
-<%= yield %>
+    <% if flash[:notice] %>
+      <p id="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p id="alert"><%= flash[:alert] %></p>
+    <% end %>
+    
+    <%= yield %>
 
 </body>
 </html>

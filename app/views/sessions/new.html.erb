@@ -7,7 +7,7 @@
   </div>
   <div class="field">
     <%= label_tag :password %><br/>
-    <%= password_field_tag :password %>
+    <%= password_field_tag :password %><!-- 这里的field_tag名字必须和model里的column名一样，这样在controller里创建model object的时候才能对应起来-->
   </div>
   <div class="actions"><%= submit_tag "Log in" %></div>
 <% end %>
