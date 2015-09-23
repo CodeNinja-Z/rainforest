@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
     search = params[:search]
     if search
       @products = Product.where("LOWER(name) LIKE ?", "%#{search.downcase}%")
+                # Product.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
       # SELECT * FROM products WHERE LOWER(name) LIKE '%streamed%'
 
       # case insensitive search, ILIKE is not supported on SQLite
