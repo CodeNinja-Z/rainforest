@@ -19,8 +19,12 @@ class ApplicationController < ActionController::Base
 
   # Purpose of defining helper_method is: To use the method
   # in other Controllers and View (application.html.erb)
+  # helper_method is available to both Controllers and Views
   helper_method :current_user
 
+  #Q: Is this a helper method?
+  #A: No, this method is going to be available to all Controllers
+  #   but not available to Views
   def ensure_logged_in
     unless current_user
       flash[:alert] = "Please log in"

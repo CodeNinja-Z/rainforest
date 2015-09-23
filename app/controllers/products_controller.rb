@@ -1,6 +1,31 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    search = params[:search]
+    if search
+      @products = Product.where("LOWER(name) LIKE ?", "%#{search.downcase}%")
+      # SELECT * FROM products WHERE LOWER(name) LIKE '%streamed%'
+
+      # case insensitive search, ILIKE is not supported on SQLite
+      # @products = Produce.where("name ILIKE ?", "&#{search}%")
+    else
+      @products = Product.all
+    end
+
+    respond_to do |format|
+      format.html do
+      # if this request is an AJAX request (XMLHttpRequest)
+        if request.xhr?
+          render @products  # render _product partial for each product
+        else
+          render :index
+        end
+      end
+
+      format.js do
+        render 'index'
+      end
+    end
+
   end
 
   def show

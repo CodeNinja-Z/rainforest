@@ -1,0 +1,7 @@
+<ul>
+  <li><p><%= product.name %></p></li>
+  <li><p><%= product.description %></p></li>
+  <li><p><%= number_to_currency(product.formatted_price) %></p></li>
+</ul>
+<p>See reviews about <%= link_to "#{product.name}", product_path(product) %>
+</p><br>
