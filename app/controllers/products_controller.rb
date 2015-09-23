@@ -13,18 +13,25 @@ class ProductsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html do
+      # format.html do
       # if this request is an AJAX request (XMLHttpRequest)
+      #   if request.xhr?
+      #     render @products  # render _product partial for each product
+      #    render partial: "product", collection: @products    # equivalent to above line
+      # else
+      #   render :index
+      # end
+      #end
+      format.html do
         if request.xhr?
-          render @products  # render _product partial for each product
+          render partial: 'product', collection: @products
         else
           render :index
         end
       end
 
-      format.js do
-        render 'index'
-      end
+      format.json { render json: @products.as_json }
+
     end
 
   end
