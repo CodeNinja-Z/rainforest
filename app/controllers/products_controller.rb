@@ -12,28 +12,25 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
+    @products = @products.order('products.created_at DESC').page(params[:page])
+
     respond_to do |format|
-      # format.html do
-      # if this request is an AJAX request (XMLHttpRequest)
-      #   if request.xhr?
-      #     render @products  # render _product partial for each product
-      #    render partial: "product", collection: @products    # equivalent to above line
-      # else
-      #   render :index
-      # end
-      #end
       format.html do
+      # if this request is an AJAX request (XMLHttpRequest)
         if request.xhr?
-          render partial: 'product', collection: @products
+           render @products  # render _product partial for each product
+           # render partial: "product", collection: @products    # equivalent to above line
         else
           render :index
         end
       end
 
+      format.js do |format|
+      end
+
       format.json { render json: @products.as_json }
 
     end
-
   end
 
   def show

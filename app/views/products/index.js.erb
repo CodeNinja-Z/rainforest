@@ -1,2 +1,3 @@
 // $('#products').html("<p>The \"quote\"</p>");
-// $('#products').html("<%= j(render(partial: 'product', collection: @products))");
+$('#products').html("<%= j(render(partial: 'product', collection: @products)) %>");
+// j() is alias for escape_javascript(), which actually means escape html punctuations for javascript.
