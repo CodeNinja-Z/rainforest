@@ -18,11 +18,10 @@ User.create!({
 )
 
 100.times do |i|
-
-Product.create({
-  name: "Product#{i}",
-  description: "Description#{i}",
-  price_in_cents: i
-  }
-)
+  Product.create({
+    name: "Product#{i}",
+    description: "Description#{i}",
+    price_in_cents: i
+    }
+  )
 end

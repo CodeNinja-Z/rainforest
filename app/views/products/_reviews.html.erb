@@ -1,0 +1,14 @@
+<% @product.reviews.each do |review| %>
+  <div class="review">
+    <p class="comment">
+      <%= review.comment %>
+    </p>
+    <!-- Q: Why must it check if review.user != nil? If remove this line, line 17 fails to work. -->
+    <% if review.user != nil %>
+      <div class="poster">
+        Posted by <em><%= review.user.name %></em>
+        Added on: <%= review.created_at %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

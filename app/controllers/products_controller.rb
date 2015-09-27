@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
       end
 
       format.js do |format|
+
       end
 
       format.json { render json: @products.as_json }
@@ -53,6 +54,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       redirect_to products_url
+      # render :create # render create.js.erb  # window.location.replace("http://stackoverflow.com");
+      # respond_to do |format|
+      #   format.js
+      # end
     else
       render :new
     end
